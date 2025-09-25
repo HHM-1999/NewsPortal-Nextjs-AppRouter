@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import "./globals.css";
 import { Tiro_Bangla } from 'next/font/google';
 import BackToTopButton from "./BackToTopButton";
+import Footer from "@/components/Footer";
 const tiroBangla = Tiro_Bangla({
   variable: "--font-tiro-bangla",
   subsets: ["bengali"],
@@ -34,16 +35,18 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="bn"  className={`${tiroBangla.variable}`}>
+    <html lang="bn" className={`${tiroBangla.variable}`}>
       <head>
-        
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" />
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
       </head>
       <body>
-      <Header />
+        <Header />
         {children}
 
+        <Footer />
+        <BackToTopButton />
         <script
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js"
           integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D"
@@ -54,7 +57,6 @@ export default function RootLayout({ children }) {
           integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
           crossOrigin="anonymous"
         ></script>
-         <BackToTopButton />
       </body>
     </html>
   );
