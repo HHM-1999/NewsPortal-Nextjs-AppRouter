@@ -2,7 +2,6 @@ import Link from "next/link";
 import getApi from "../../app/lib/getApi";
 
 const SpecialLead = async () => {
-  // Fetch data server-side
   const list = await getApi("home-json-bn/generateSpecialTopOne.json");
   const leadData = list?.slice(0, 4) || [];
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,12 +10,13 @@ import getApi from "../lib/getApi";
 import postApi from "../lib/postApi";
 import NotFound from "@/not-found";
 import DocumentTitle from '@uiw-admin/document-title';
+import { useParams } from "next/navigation";
 // import DivisionDistricName from "@/app/divisions/DistrictDivision";
 
 const limit = 6;
 
-export default function CategoryPage({ params }) {
-  const { catSlug } = use(params);
+export default function CategoryPage() {
+  const { catSlug } = useParams();
 
   const [category, setCategory] = useState(null);
   const [leadNewsList, setLeadNewsList] = useState([]);
@@ -28,7 +29,7 @@ export default function CategoryPage({ params }) {
   const [loading, setLoading] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
 
-  // 🔹 Fetch category + initial news
+
   useEffect(() => {
     const fetchCategoryData = async () => {
       try {
@@ -44,14 +45,12 @@ export default function CategoryPage({ params }) {
 
         setCategory(cat);
         setCatID(cat.CategoryID);
-
         const leadNews = await getApi(`inner-category-content/${cat.CategoryID}/10`);
         const leadList = leadNews?.inner_category_content || [];
         setLeadNewsList(leadList);
 
         const topIds = leadList.map((el) => el.ContentID) || [];
         setTopContentIds(topIds);
-
         const formData = {
           top_content_ids: topIds,
           category_id: cat.CategoryID,
@@ -76,7 +75,6 @@ export default function CategoryPage({ params }) {
     fetchCategoryData();
   }, [catSlug]);
 
-  // 🔹 Load More handler
   const handleLoadMore = async () => {
     setLoading(true);
     try {
@@ -104,8 +102,8 @@ export default function CategoryPage({ params }) {
 
   return (
     <>
-      {/* 🔹 Client-side Metadata */}
-      <DocumentTitle title={category?.CategoryName || "News Portal"}/>
+
+      <DocumentTitle title={category?.CategoryName || "News Portal"} />
       <Head>
         <title>{category?.CategoryName || "Category"}</title>
         <meta name="description" content={category?.CategoryName || "News Category"} />
@@ -123,7 +121,6 @@ export default function CategoryPage({ params }) {
       </Head>
 
       <div className="container">
-        {/* 🔹 Category Title + Subcats */}
         <div className="row">
           <div className="col-lg-12 mt-3">
             <div className="CatTitle">
@@ -152,8 +149,7 @@ export default function CategoryPage({ params }) {
             )}
           </div>
         </div>
-
-        {/* 🔹 Initial Loading Skeleton */}
+        {/* skeleton */}
         {initialLoading ? (
           <div className="row">
             {Array.from({ length: 4 }).map((_, idx) => (
@@ -174,7 +170,7 @@ export default function CategoryPage({ params }) {
           </div>
         ) : (
           <>
-            {/* 🔹 Lead News */}
+            {/*category News */}
             <div className="row">
               {leadNewsList.map((nc, idx) => (
                 <div className="col-lg-6" key={idx}>
@@ -197,7 +193,7 @@ export default function CategoryPage({ params }) {
                 </div>
               ))}
 
-              {/* 🔹 More News */}
+              {/* category More News */}
               {newsList.map((nc, idx) => (
                 <div className="col-lg-6" key={idx}>
                   <Link href={`/details/${nc.Slug}/${nc.ContentID}`}>
@@ -220,7 +216,7 @@ export default function CategoryPage({ params }) {
               ))}
             </div>
 
-            {/* 🔹 Load More */}
+            {/* Load More segment */}
             {hasMore && (
               <div className="col-12 text-center my-4 loadMorebtn">
                 <button

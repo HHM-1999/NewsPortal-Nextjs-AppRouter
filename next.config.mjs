@@ -11,7 +11,7 @@ const nextConfig = {
             protocol: 'https',
             hostname: 'assets.deshkalnews.com',
             port: '',
-            pathname: '**', // allow all paths from this host
+            pathname: '**', 
           },
         ],
       },

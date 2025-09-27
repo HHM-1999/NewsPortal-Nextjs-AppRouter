@@ -8,9 +8,7 @@ export default function BackToTopButton() {
     const handleScroll = () => {
       setShow(window.scrollY > 300);
     };
-
     window.addEventListener('scroll', handleScroll);
-    // Clean up listener on unmount
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -39,7 +37,6 @@ export default function BackToTopButton() {
         cursor: 'pointer',
       }}
     >
-      {/* <ArrowUp size={20} /> */}
       <i className="fa-solid fa-circle-up" style={{fontSize:"20px"}}></i>
     </button>
   );

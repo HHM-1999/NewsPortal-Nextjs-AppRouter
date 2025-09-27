@@ -142,10 +142,7 @@ const Header = () => {
                                 <li className="nav-item" target="_self" aria-label="" key={idx} >
                                     <Link
                                         className="nav-link"
-                                        href={item.path}
-                                        prefetch={false}
-                                        // onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                                    >
+                                        href={item.path}>
                                         {item.label}
                                     </Link>
                                 </li>
