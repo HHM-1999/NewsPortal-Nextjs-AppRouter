@@ -3,6 +3,7 @@ import "./globals.css";
 import { Tiro_Bangla } from 'next/font/google';
 import BackToTopButton from "./BackToTopButton";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 const tiroBangla = Tiro_Bangla({
   variable: "--font-tiro-bangla",
   subsets: ["bengali"],
@@ -43,6 +44,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Header />
+        <ScrollToTop />
         {children}
 
         <Footer />

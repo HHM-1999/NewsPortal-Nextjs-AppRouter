@@ -774,6 +774,10 @@ label {
   font-family: var(--font-tiro-bangla) !important;
 
 }
+.DSocialTop {
+	position: relative;
+	z-index: 1000;
+}
 
 .catnameDetails {
   font-size: 18px;

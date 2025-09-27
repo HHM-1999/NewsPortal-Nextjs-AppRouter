@@ -16,7 +16,7 @@ const limit = 6;
 export default function SubCategoryPage() {
     const { catSlug, subCatSlug } = useParams();
 
-    const [category, setCategory] = useState(null);
+    // const [category, setCategory] = useState(null);
     const [subCategory, setSubCategory] = useState(null);
     const [leadNewsList, setLeadNewsList] = useState([]);
     const [newsList, setNewsList] = useState([]);
@@ -42,13 +42,13 @@ export default function SubCategoryPage() {
                 const subCatData = subCatRes?.subCategories;
 
                 if (!categoryData || !subCatData) {
-                    setCategory(null);
+                    // setCategory(null);
                     setSubCategory(null);
                     setInitialLoading(false);
                     return;
                 }
 
-                setCategory(categoryData);
+                // setCategory(categoryData);
                 setSubCategory(subCatData);
                 setCatID(categoryData.CategoryID);
 
